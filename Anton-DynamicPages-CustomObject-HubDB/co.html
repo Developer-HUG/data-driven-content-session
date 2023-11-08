@@ -1,0 +1,205 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Custom objects
+-->
+
+{% extends "./layouts/base.html" %}
+{%- set template_css = "../../css/templates/hubdb.css" -%}
+{%- include './api.html' -%}
+{% set estates = dynamic_page_crm_object %}
+
+{% block body %}
+
+<div class="body-container body-container">
+  <div class="content-wrapper"> 
+
+    {# start listing page #}
+    {% if dynamic_page_crm_object_type_fqn %}
+    {% set estate_info = crm_objects(dynamic_page_crm_object_type_fqn, "limit=200", "name, description, email, rooms, longitute, latitute, living_area, property_size, price, main_image, hs_object_id") %} {# adding a limit and all custom object properties we'd like to have in the listing page #}
+
+    <div class="card-wrapper">
+      {# start listing layout for single custom object entry #}
+      {% for single_estate in estate_info.results %}
+      <div class="single-card" data-aos="fade-up" data-aos-delay="{{loop.index * 400}}" data-aos-duration="800">
+        <div class="content">
+          <div class="preview-image" style="background-image:url('{{ single_estate.main_image }}')"></div>
+          <div class="single-card-info">
+            <h2 class="h4">
+              {{ single_estate.name }}
+            </h2>
+            <p>
+              {{ single_estate.description|striptags|truncatehtml(150, '...', true) }}
+            </p>
+            <div class="seperator"></div>
+            <div class="estate-info">
+              <div class="living info">
+                <i class="far fa-angle-90"></i>&nbsp;<strong>{{ single_estate.living_area|int }}</strong>&nbsp;sq ft.
+              </div>
+              <div class="single_estate info">
+                <i class="far fa-house-chimney"></i>&nbsp;<strong>{{ single_estate.property_size|int }}</strong>&nbsp;sq ft.
+              </div>
+              <div class="rooms info">
+                <i class="far fa-person-shelter"></i>&nbsp;<strong>{{ single_estate.rooms }}</strong>
+              </div>
+              <div class="pricing info">
+                <i class="far fa-dollar-sign"></i>&nbsp;<strong>{{ single_estate.price|format_currency_value(locale='en-US', currency='USD') }}</strong>
+              </div>
+            </div>
+            <div class="bottom-info">
+              <a class="btn btn-primary" href="{{ request.path }}/{{ single_estate.hs_object_id }}">Discover more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {# end layout for single custom object entry #}
+    </div>
+    {# end listing page #}
+    {# start detail page #}
+    {% elif dynamic_page_crm_object %}  {# layout for custom object detail page #}
+    {% set property = dynamic_page_crm_object %} {# set source for single detail page information #}
+    {% set images = property.images|split(",") %} {# prepare all images from the 'images' property of the custom object and use the used 'comma' as seperator #}
+    {% set position = 'lat:'~ property.latitute ~', lng:' ~ property.longitute %} {# combine the latitute and longitute property of each entry to create a new variable #}
+    
+    {% require_head %} {# add some scripts specifically to the detail/single page to optimize performance; those scripts have to be included in the head #}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    {% if property.latitute and property.longitute != null %} {# build the Google Map only if latitute and longitute values are provided #}
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+      const position = { {{ position }} };
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 17,
+          center: position,
+        });
+        const contentString =
+              '<div id="content">' +
+              '<div id="siteNotice">' +
+              '</div>' +
+              '<div id="bodyContent">' +
+              '<p>{{ property.description|truncatehtml('200') }}</p>' + {# load the description from the custom object description property into the Google maps location popup #}
+        '</div>'  +
+          '</div>';
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          ariaLabel: "{{ property.name }}", {# set the property name as aria-label of Google Maps marker #}
+        });
+        const marker = new google.maps.Marker({
+          position: position,
+          map,
+          title: "{{ property.name }}", {# set the property name as title of Google Maps marker #}
+        });
+
+        marker.addListener("click", () => {
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+        });
+      }
+
+      window.initMap = initMap;
+
+    </script>
+    <style> {# some basic Google Maps styling #}
+      #map {
+        height: 400px;
+      }
+    </style>
+    {% endif %}
+    
+    {% end_require_head %}
+    
+    <h1>
+      {{ property.name }} {# display the property name as H1 of the detail/single page #}
+    </h1>
+    
+    <div class="layout">
+      <div class="left-side">
+        
+        {# start image slider #}
+        <div class="swiper"> 
+          <div class="swiper-wrapper">
+            {% for image in images %} {# use the 'comma' seperated entries to create a slider #}
+              <img src="{{ image }}" class="swiper-slide" alt="{{ property.name }}">
+            {% endfor %}
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        {# end image slider #}
+        
+      
+        <div class="single-content">
+          <div class="estate-info">
+            <div class="living info">
+              <i class="far fa-angle-90"></i>&nbsp;<strong>{{ property.living_area|int }}</strong>&nbsp;sq ft.
+            </div>
+            <div class="property info">
+              <i class="far fa-house-chimney"></i>&nbsp;<strong>{{ property.property_size|int }}</strong>&nbsp;sq ft.
+            </div>
+            <div class="rooms info">
+              <i class="far fa-person-shelter"></i>&nbsp;<strong>{{ property.rooms }}</strong>
+            </div>
+            <div class="pricing info">
+              <i class="far fa-dollar-sign"></i>&nbsp;<strong>{{ property.price }}</strong>
+            </div>
+          </div>
+          <div class="estate-description">
+            {{ property.description }}
+          </div>
+        </div>
+        
+        
+        {% if property.latitute and property.longitute != null %} {# show the Google Map only if latitute and longitute values are provided #}
+        <div id="map"></div>
+        {% endif %}
+      
+      
+      </div> {# end left side wrapper #}
+      
+      
+      <div class="right-side">
+        
+        {# start contact box #}
+        <div class="contact-person-info">
+          <img src="{{ property.owner_image }}" alt="{{ property.owner_name }}">
+          <div class="contact-info">
+            <strong>{{ property.owner_name }}</strong>
+            <a href="mailto:{{ property.email }}"><i class="far fa-envelope"></i>Contact {{ property.owner_name }}</a>
+          </div>
+        </div>
+       {# end contact box #} 
+
+        {% module "module_16982673316103" path="./../modules/social_sharing", label="social_sharing" %}
+      </div>
+
+
+    </div>
+    {% require_js %}
+    {% if property.latitute and property.longitute != null %} {# add the Google Maps API call only if latitute and longitute values are provided #}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ ga_api }}&callback=initMap&v=weekly&sensor=false" defer></script>
+    {% endif %}
+    
+    <script>
+      var swiper = new Swiper(".swiper", {
+        loop: true,
+        autoHeight: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    {% end_require_js %}
+    {# end detail page layout #}
+    {% else %} {# fallback or potential further/deeper level of the detail page #}
+    
+    {% endif %}
+  </div>
+</div>
+{# end body-container #}
+{% endblock %}

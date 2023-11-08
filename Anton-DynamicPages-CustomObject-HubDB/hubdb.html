@@ -1,0 +1,204 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: HubDB
+-->
+
+{% extends "./layouts/base.html" %}
+{%- set template_css = "../../css/templates/hubdb.css" -%}
+{%- include './api.html' -%}
+{% block body %}
+
+<div class="body-container body-container">
+  <div class="content-wrapper">
+
+    {# start listing page #}
+    {% if dynamic_page_route_level == 0 %}
+    <div class="card-wrapper">
+      {% for entry in hubdb_table_rows(dynamic_page_hubdb_table_id) %} {# set a for-loop for all HubDB rows #}
+
+      {# start card display for each HubDB row #}
+      <div class="single-card">
+        <div class="content">
+          <div class="preview-image" style="background-image:url('{{ entry.preview_image.url }}')"></div>
+          <div class="single-card-info">
+            <h2 class="h4">
+              {{ entry.estate_name }}
+            </h2>
+            <p>
+              {{ entry.description|truncatehtml(150, '...', true) }}
+            </p>
+            <div class="seperator"></div>
+            <div class="estate-info">
+              <div class="living info">
+                <i class="far fa-angle-90"></i>&nbsp;<strong>{{ entry.living_area|int }}</strong>&nbsp;sq ft.
+              </div>
+              <div class="property info">
+                <i class="far fa-house-chimney"></i>&nbsp;<strong>{{ entry.property_size|int }}</strong>&nbsp;sq ft.
+              </div>
+              <div class="rooms info">
+                <i class="far fa-person-shelter"></i>&nbsp;<strong>{{ entry.rooms }}</strong>
+              </div>
+              <div class="pricing info">
+                <i class="far fa-dollar-sign"></i>&nbsp;<strong>{{ entry.price|format_currency_value(locale='en-US', currency='USD') }}</strong>
+              </div>
+            </div>
+            <div class="bottom-info">
+              <a class="btn btn-primary" href="{{ request.path }}/{{ entry.hs_path }}">Discover more</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {# end card display for each HubDB row #}
+      {% endfor %}
+    </div>
+
+    {# start detail/single page #}
+    {% elif dynamic_page_route_level == 1 %}
+    {% set images = dynamic_page_hubdb_row.images|split(",") %}
+
+
+    {% require_head %} {# adding some scripts specifically to the detail/single page to optimize performance; those scripts have to be included in the head #}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    {# start to load the Google map if the boolean 'show map' in the corresponding row is enabled; performance optimizations #}
+    {% if dynamic_page_hubdb_row.show_map %}
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+      const position = { lat: {{ dynamic_page_hubdb_row.address.lat }}, lng: {{ dynamic_page_hubdb_row.address.lon }} };
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 17,
+          center: position,
+        });
+        const contentString =
+              '<div id="content">' +
+              '<div id="siteNotice">' +
+              '</div>' +
+              '<div id="bodyContent">' +
+              '<p>{{ dynamic_page_hubdb_row.description|truncatehtml('200') }}</p>' + {# loading the description from the HubDB row into the Google maps location popup #}
+        '</div>'  +
+          '</div>';
+        const infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          ariaLabel: "{{ dynamic_page_hubdb_row.estate_name }}", {# setting the name of the marker dynamically by passing HubDB information into it #}
+        });
+        const marker = new google.maps.Marker({
+          position: position,
+          map,
+          title: "{{ dynamic_page_hubdb_row.estate_name }}", {# setting the name of the marker dynamically by passing HubDB information into it #}
+        });
+
+        marker.addListener("click", () => {
+          infowindow.open({
+            anchor: marker,
+            map,
+          });
+        });
+      }
+
+      window.initMap = initMap;
+    </script>
+    <style>
+      #map {
+        height: 400px;
+      }
+    </style>
+    {% endif %}
+    {% end_require_head %}
+    
+    <h1>
+      {{ dynamic_page_hubdb_row.estate_name }}
+    </h1>
+    
+    <div class="layout">
+      <div class="left-side">
+        {# start image slider #}
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {% for image in images %}<img src="{{ image }}" class="swiper-slide" alt="{{ dynamic_page_hubdb_row.estate_name }}">{% endfor %}
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        {# end slider #}
+        
+        <div class="single-content">
+          <div class="estate-info">
+            <div class="living info">
+              <i class="far fa-angle-90"></i>&nbsp;<strong>{{ dynamic_page_hubdb_row.living_area|int }}</strong>&nbsp;sq ft.
+            </div>
+            <div class="property info">
+              <i class="far fa-house-chimney"></i>&nbsp;<strong>{{ dynamic_page_hubdb_row.property_size|int }}</strong>&nbsp;sq ft.
+            </div>
+            <div class="rooms info">
+              <i class="far fa-person-shelter"></i>&nbsp;<strong>{{ dynamic_page_hubdb_row.rooms }}</strong>
+            </div>
+            <div class="pricing info">
+              <i class="far fa-dollar-sign"></i>&nbsp;<strong>{{ dynamic_page_hubdb_row.price }}</strong>
+            </div>
+          </div>
+          {{ dynamic_page_hubdb_row.description }}
+        </div>
+        
+        {% if dynamic_page_hubdb_row.show_map %}{# show Google Maps if the boolean is checked #}
+        <div id="map"></div>
+        {% endif %}
+        
+      </div>
+      <div class="right-side">
+        <div class="contact-person-info">
+          <img src="{{ dynamic_page_hubdb_row.contact_person_photo.url }}" alt="{{ dynamic_page_hubdb_row.contact_person }}">
+          <div class="contact-info">
+            <strong>{{ dynamic_page_hubdb_row.contact_person }}</strong>
+            <a href="mailto:{{ dynamic_page_hubdb_row.contact_person_email }}"><i class="far fa-envelope"></i>Contact {{ dynamic_page_hubdb_row.contact_person }}</a>
+          </div>
+        </div>
+        
+        {# check if the contact_form column has a value and load the form #}
+        {% unless dynamic_page_hubdb_row.contact_form == null %}
+        <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            region: "eu1",
+            portalId: "143491694",
+            formId: "{{ dynamic_page_hubdb_row.contact_form }}"
+          });
+        </script>
+        {% endunless %}
+        {# end loading a form #}
+        
+        {% module "module_16982673316103" path="/scaleable HubDB webinar/modules/social_sharing", label="social_sharing" %}
+        
+      </div>
+    </div>
+    {# end layout #}
+    
+    {# adding scripts to the detail/single page in the footer/before closing body-tag #}
+    {% require_js %}
+    {% if dynamic_page_hubdb_row.show_map %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ ga_api }}&callback=initMap&v=weekly&sensor=false" defer></script>
+    {% endif %}
+    
+    {# set up the image slider #}
+    <script>
+      var swiper = new Swiper(".swiper", {
+        loop: true,
+        autoHeight: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    {# end image slider #}
+    
+    {% end_require_js %}
+    {% endif %}
+  </div>
+  {# end 'global' container #}
+</div>
+{# end body-container #}
+{% endblock %}
