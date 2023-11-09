@@ -6,10 +6,13 @@
 - [Watch the session on the HubSpot Developer YouTube channel](https://youtube.com/live/TFuZWdt4ogM?feature=share) 📺
 - [Join the Developer HUG](https://events.hubspot.com/developer/) 🤗
 
+## Have ideas? Found a way to improve things?  Will Spiro wants to talk with you!  
+- [Schedule a meeting with Will](https://app.hubspot.com/meetings/wspiro)
+
 ## 📄 Useful Documentation Links
 - [CMS Docs for HubDB](https://developers.hubspot.com/docs/cms/data/hubdb) 🗃️
 - [API Docs for HubDB](https://developers.hubspot.com/docs/api/cms/hubdb) 🔗
-
+- [GraphQL Docs](https://developers.hubspot.com/docs/cms/data/query-hubspot-data-using-graphql)
 - [CMS Docs for Custom Objects](https://developers.hubspot.com/docs/cms/data/crm-objects) 🧩
 - [API Docs for Custom Objects](https://developers.hubspot.com/docs/api/crm/crm-custom-objects) 🔧
 
