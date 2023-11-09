@@ -1,6 +1,0 @@
-{#
-  This macro determines which css classes should be added,
-  based on the ratio passed from the pageblock.
-#}
-{% macro utils(ratio) %}{# Set variables #}{% set d_ratio = ratio.desktop ? 'u-image--'~ratio.desktop~'' : '' %}{% set t_ratio = ratio.tablet ? 'u-image--'~ratio.tablet~'-t' : '' %}{% set m_ratio = ratio.mobile ? 'u-image--'~ratio.mobile~'-m' : '' %}{# Echo variables #}{{d_ratio}}
-{{t_ratio}} {{m_ratio}}{% endmacro %}
