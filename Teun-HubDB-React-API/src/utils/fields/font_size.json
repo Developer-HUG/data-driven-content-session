@@ -1,0 +1,17 @@
+{
+  "name": "font_size",
+  "label": "Font size (paragraph)",
+  "required": false,
+  "locked": false,
+  "display": "select",
+  "inline_help_text": "",
+  "help_text": "Choose a different size for the paragraph text here (optional)",
+  "choices": [
+    ["none", "Standard (18px)"],
+    ["s", "Small (16px)"],
+    ["l", "Large (20px)"]
+  ],
+  "type": "choice",
+  "placeholder": "",
+  "default": "none"
+}

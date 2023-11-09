@@ -1,0 +1,5 @@
+.u-overlay {
+  @include absolute();
+  background: $almost-black;
+  opacity: 0.2;
+}

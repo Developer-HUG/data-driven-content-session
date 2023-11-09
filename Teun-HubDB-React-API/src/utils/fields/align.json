@@ -1,0 +1,44 @@
+{
+  "name": "align",
+  "label": "Alignment (text)",
+  "sortable": false,
+  "required": false,
+  "locked": false,
+  "children": [
+    {
+      "name": "desktop",
+      "label": "Desktop",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "choices": [
+        ["left", "Left"],
+        ["center", "Center"],
+        ["right", "Right"]
+      ],
+      "type": "choice",
+      "default": "left"
+    },
+    {
+      "name": "mobile",
+      "label": "Mobile",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "choices": [
+        ["left", "Left"],
+        ["center", "Center"],
+        ["right", "Right"]
+      ],
+      "type": "choice",
+      "default": "left"
+    }
+  ],
+  "type": "group",
+  "default": {
+    "desktop": "left",
+    "mobile": "left"
+  }
+}

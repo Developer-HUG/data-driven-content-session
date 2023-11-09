@@ -1,0 +1,10 @@
+{
+  "name": "overlay",
+  "label": "Add overlay?",
+  "required": false,
+  "locked": false,
+  "type": "boolean",
+  "inline_help_text": "",
+  "help_text": "",
+  "default": false
+}

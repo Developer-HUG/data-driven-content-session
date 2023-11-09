@@ -1,0 +1,54 @@
+{
+  "name": "position",
+  "label": "Position of the image/video",
+  "required": false,
+  "locked": false,
+  "children": [
+    {
+      "name": "desktop",
+      "label": "Desktop",
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "inline_help_text": "",
+      "help_text": "",
+      "choices": [
+        ["left", "Left"],
+        ["right", "Right"]
+      ],
+      "type": "choice",
+      "placeholder": "",
+      "default": "left"
+    },
+    {
+      "name": "mobile",
+      "label": "Mobile",
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "inline_help_text": "",
+      "help_text": "",
+      "choices": [
+        ["top", "Top"],
+        ["bottom", "Bottom"]
+      ],
+      "type": "choice",
+      "placeholder": "",
+      "default": "top"
+    },
+    {
+      "name": "scale",
+      "label": "Scale image (or video)",
+      "required": false,
+      "locked": false,
+      "type": "boolean",
+      "inline_help_text": "",
+      "help_text": "If this option is on, the image will not hold the aspect ratio but will scale with the content.",
+      "default": true
+    }
+  ],
+  "type": "group",
+  "inline_help_text": "",
+  "help_text": "",
+  "default": {}
+}

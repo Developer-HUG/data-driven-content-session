@@ -1,0 +1,17 @@
+{
+  "name": "text_shadow",
+  "label": "Text shadow",
+  "required": false,
+  "locked": false,
+  "display": "select",
+  "inline_help_text": "",
+  "help_text": "",
+  "choices": [
+    ["none", "None"],
+    ["dark", "Dark (for light text)"],
+    ["light", "Light (for dark text)"]
+  ],
+  "type": "choice",
+  "placeholder": "",
+  "default": "none"
+}

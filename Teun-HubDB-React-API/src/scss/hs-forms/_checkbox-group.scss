@@ -1,0 +1,92 @@
+.hs-form .hs-fieldtype-checkbox {
+  margin-bottom: 1rem;
+
+  .hs-form-checkbox-display {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 1.2;
+    font-size: rem-calc(16);
+
+    p {
+      line-height: 1;
+    }
+
+    > input[type='checkbox'] {
+      position: relative;
+      display: none;
+
+      &:checked + span::after {
+        background-image: url('https://f.hubspotusercontent00.net/hubfs/248909/Template/check-white.svg');
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 0.8rem 0.8rem;
+      }
+
+      &:checked + span::before {
+        background: $almost-black;
+        border-color: $almost-black;
+      }
+
+      &:disabled + span::before {
+        background: $input-disabled;
+      }
+    }
+
+    > span {
+      position: relative;
+      cursor: pointer;
+      padding-left: 2rem;
+      margin-left: 0 !important; //reset hubspot
+      min-height: 1.375rem; //match square size
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      line-height: 1.4;
+      font-size: rem-calc(16);
+      color: $gray;
+
+      // fake input
+      &::before {
+        @include square(1.25rem); //match label height
+        @include transition(all);
+        position: absolute;
+        background: $white;
+        border: 1px solid $light-gray;
+        content: '';
+        left: 0;
+      }
+
+      // checkbox
+      &::after {
+        @include square(0.8rem);
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 4px;
+
+        @supports (-ms-ime-align: auto) {
+          // Edge
+          left: 3px;
+          top: 4px;
+        }
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          // IE11
+          left: 3px;
+          top: 4px;
+        }
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  > label {
+    font-size: rem-calc(16);
+    color: $almost-black;
+    margin-bottom: 1rem;
+  }
+}

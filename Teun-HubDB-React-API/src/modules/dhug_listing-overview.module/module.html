@@ -1,0 +1,14 @@
+{% import 'dhug/macros/helpers.html' as helpers %}
+
+<section class="c-listing-overview {{ helpers.utils('', module.padding, '') }}">
+  <div class="o-container">
+    <div class="u-squeeze u-squeeze--{{ module.squeeze }}">
+      <div class="c-listing-overview__container">
+        <div id="js-listing-overview-app" data-portal="{{ hub_id }}" data-table="{{ module.table_id }}"
+          data-load="{{ module.load_more }}" data-search="{{ module.labels.search_label }}"
+          data-filter="{{ module.labels.filter_label }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

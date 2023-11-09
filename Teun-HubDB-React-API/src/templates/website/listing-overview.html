@@ -1,0 +1,40 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Bright - Default
+  screenshotPath: ""
+-->
+{% extends "../layouts/base.html" %}
+
+{% block body %}
+<main id="main-content" class="body-container-wrapper">
+  {% dnd_area 'body_dnd_area' class='body-container body-container--faq', label='Main section' %}
+    {% dnd_section %}
+      {% dnd_module 
+        path = '../../modules/dhug_listing-overview',
+        width = 12,
+        offset = 0,
+        padding = {
+          'top': 'l',
+          'bottom': 'l',
+          'tablet_top': 'l',
+          'tablet_bottom': 'l',
+          'mobile_top': 'm',
+          'mobile_bottom': 'l'
+        },
+        colors = {
+          'background': 'lightest-gray',
+          'text': 'black'
+        },
+        labels = {
+          'search_label': 'Search listings',
+          'filter_label': 'Filter listings'
+        },
+        load_more = 'Load more',
+        table_id = 5365693
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_section %}
+  {% end_dnd_area %}
+</main>
+{% endblock body %}

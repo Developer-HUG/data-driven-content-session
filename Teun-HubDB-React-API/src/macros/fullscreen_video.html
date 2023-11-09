@@ -1,0 +1,15 @@
+{% macro render(video, additionalClass, uniqid) %}
+  <section class="c-fullscreen-video" id="{{uniqid}}">
+    <svg class="c-icon c-fullscreen-video__icon">
+      <use href="#close" xlink:href="#close"></use>
+    </svg>
+    <div class="c-fullscreen-video__video-container">
+      <video class="c-fullscreen-video__video u-image__background js-video" controls playsinline preload>
+        <source src="{{video.full_mp4}}" type="video/mp4">
+        {% if video.full_vtt != '' %}
+        <track label="Nederlands" kind="subtitles" srclang="nl" src="{{video.full_vtt}}" mode="hidden">
+        {% endif %}
+      </video>
+    </div>
+  </section>
+{% endmacro %}

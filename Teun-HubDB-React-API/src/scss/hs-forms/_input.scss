@@ -1,0 +1,47 @@
+.hs-form .hs-input:not([type='checkbox'], [type='radio']) {
+  width: 100% !important;
+}
+
+.hs-form fieldset {
+  display: block;
+  max-width: 100% !important;
+}
+
+.hs-form .form-columns-0 {
+  margin-bottom: 1rem !important;
+}
+
+.hs-form .hs-form-field {
+  margin-bottom: 1.25rem;
+}
+
+.hs-form .hs-input {
+  width: 100% !important;
+  @include breakpoint(small only) {
+    width: 100% !important;
+  }
+}
+
+.hs-form {
+  .form-columns-0,
+  .form-columns-1,
+  .form-columns-2 {
+    .input {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+.hs-form .form-columns-2 {
+  .hs-form-field {
+    width: calc(100% / 2 - 0.5rem) !important;
+    float: left;
+
+    @include breakpoint(small only) {
+      width: 100% !important;
+    }
+    &:last-child {
+      float: right !important;
+    }
+  }
+}

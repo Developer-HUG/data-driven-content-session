@@ -1,0 +1,10 @@
+{
+  "name": "content",
+  "label": "Content",
+  "sortable": false,
+  "required": false,
+  "locked": false,
+  "validation_regex": "",
+  "type": "richtext",
+  "default": "<h2>Change this to the correct heading</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+}

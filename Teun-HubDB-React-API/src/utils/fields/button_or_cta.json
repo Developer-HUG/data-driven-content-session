@@ -1,0 +1,69 @@
+{
+  "name": "button",
+  "label": "Button (or CTA)",
+  "sortable": false,
+  "required": false,
+  "locked": false,
+  "children": [
+    {
+      "name": "content",
+      "label": "Content for button or CTA",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "validation_regex": "",
+      "allow_new_line": false,
+      "show_emoji_picker": false,
+      "type": "text",
+      "default": "Catchy CTA"
+    },
+    {
+      "name": "link",
+      "label": "Link for button (fill this if no CTA is required)",
+      "required": false,
+      "locked": false,
+      "supported_types": ["EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG"],
+      "type": "link",
+      "inline_help_text": "",
+      "help_text": "",
+      "default": {
+        "url": {
+          "content_id": null,
+          "type": "EXTERNAL",
+          "href": ""
+        },
+        "open_in_new_tab": false,
+        "no_follow": false
+      }
+    },
+    {
+      "name": "hs_cta",
+      "label": "Hubspot CTA (Custom Button + Button Style: Link (No Style))",
+      "type": "cta",
+      "default": null
+    },
+    {
+      "name": "style",
+      "label": "Button style",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "choices": [
+        ["primary", "Primary"],
+        ["secondary", "Secondary"],
+        ["tertiary", "Tertiary"],
+        ["white", "White"],
+        ["black", "Black"]
+      ],
+      "type": "choice",
+      "placerholder": "",
+      "default": "primary"
+    }
+  ],
+  "type": "group",
+  "default": {
+    "content": "",
+    "href": ""
+  }
+}

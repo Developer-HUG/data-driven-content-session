@@ -1,0 +1,19 @@
+<!--
+  templateType: email_subscription_preferences_page
+  isAvailableForNewContent: true
+  label: DHUG - email subscription preferences
+  screenshotPath: ""
+-->
+{% extends '../layouts/base.html' %}
+
+{% block body %}
+<main id="main-content" class="body-container-wrapper">
+  <section class="c-system-page">
+    <div class="o-container">
+      {% module 'subscription_preferences'
+      path='@hubspot/email_subscriptions'
+      %}
+    </div>
+  </section>
+</main>
+{% endblock body %}

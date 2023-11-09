@@ -1,0 +1,11 @@
+.u-sticky-container {
+  .o-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint(large) {
+      max-width: calc(100% - 400px); // Define the max width needed for the sticky container here
+    }
+  }
+}

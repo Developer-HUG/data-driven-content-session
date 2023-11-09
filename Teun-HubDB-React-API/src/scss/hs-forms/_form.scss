@@ -1,0 +1,229 @@
+/**
+ * Form
+ *
+ * @since 1.0.0
+ */
+
+/*
+ * NOTE <input>: 
+ * Make min-height and line-height the same for cross-browser height;
+ * Firefox/Safari/Chrome needs MIN-height for <select>;
+ * Edge needs height;
+ */
+
+form {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    width: 100%;
+  }
+
+  font-family: $heading-font-family;
+}
+
+.hs-form-field {
+  $root: &;
+
+  fieldset {
+    display: block;
+    width: 100%;
+  }
+
+  legend {
+    padding: 0 1rem;
+    color: $gray;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='url'],
+  input[type='search'],
+  input[type='submit'],
+  select,
+  textarea {
+    @include transition(all);
+    width: 100%;
+    z-index: 1;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: $primary-font-family;
+    font-size: rem-calc(16);
+    background-color: $input-background;
+    color: $input-color;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid $input-border;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    min-height: 2.5rem; // see NOTE
+    line-height: 2.5rem; // see NOTE
+
+    @supports (-ms-ime-align: auto) {
+      /* Edge */
+      height: 2.5rem; // see NOTE
+    }
+
+    &:hover {
+      border-color: $almost-black;
+    }
+
+    &:focus {
+      border-color: $input-focus;
+    }
+
+    &:disabled {
+      background-color: $input-disabled;
+    }
+
+    &::placeholder {
+      color: $input-placeholder;
+      opacity: 1;
+    }
+
+    &.invalid,
+    &.error {
+      border-color: $error;
+    }
+
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  textarea {
+    display: block; //removes 4px whitespace
+    resize: vertical;
+    line-height: 1.2;
+    min-height: 3rem;
+
+    &:focus {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      min-height: rem-calc(200);
+    }
+  }
+
+  input[type='search'] {
+    background-position: 8px center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    padding-left: 2.5rem;
+
+    &::-webkit-search-decoration {
+      -webkit-appearance: none; //safari: remove left-padding
+    }
+  }
+
+  label {
+    display: block;
+    font-weight: 400;
+    color: $input-label-color;
+    font-size: rem-calc(12);
+    margin-bottom: 0.5rem;
+  }
+
+  .hs-error-msg {
+    color: $error;
+    font-size: rem-calc(14);
+    text-align: right;
+  }
+
+  ul.hs-error-msgs {
+    margin-top: 0.25rem;
+
+    li {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &.active {
+    position: relative;
+    margin-bottom: 2rem;
+
+    &.hs-fieldtype-text > label,
+    &.hs-fieldtype-textarea > label {
+      @include transition();
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      margin-bottom: 0;
+      font-size: rem-calc(16);
+      line-height: 1;
+    }
+
+    &.hs-fieldtype-textarea > label {
+      top: 1rem;
+      transform: translateY(0);
+    }
+  }
+
+  &.focus,
+  &.seen {
+    &.hs-fieldtype-text > label,
+    &.hs-fieldtype-textarea > label {
+      padding: 0 0.125rem;
+      color: $almost-black;
+      top: 0;
+      transform: translateY(-50%);
+      font-size: rem-calc(10);
+    }
+
+    textarea {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      min-height: rem-calc(200);
+    }
+  }
+
+  input {
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  &.seen {
+    input {
+      background-image: url('https://cdn2.hubspot.net/hubfs/5732082/valid.svg');
+    }
+  }
+
+  input.error {
+    background-image: url('https://cdn2.hubspot.net/hubfs/5732082/error.svg');
+  }
+}
+
+.hs-form {
+  .hs-error-msg {
+    color: $error;
+  }
+
+  .hs-richtext {
+    color: $gray;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: $almost-black;
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    p {
+      color: $gray;
+    }
+  }
+}

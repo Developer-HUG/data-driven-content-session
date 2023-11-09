@@ -1,0 +1,19 @@
+{
+"name": "image",
+"label": "Image",
+"sortable": false,
+"required": false,
+"locked": false,
+"inline_help_text": "",
+"help_text": "",
+"responsive": false,
+"resizable": false,
+"show_loading" : false,
+"type": "image",
+"default": {
+  "size_type" : "auto",
+  "src": "",
+  "alt": null,
+  "loading": "disabled"
+  }
+}

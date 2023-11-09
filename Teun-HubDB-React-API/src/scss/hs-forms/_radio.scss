@@ -1,0 +1,77 @@
+.hs-fieldtype-radio {
+  background: transparent;
+  box-shadow: none;
+  margin-bottom: 1rem;
+
+  .inputs-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .hs-form-radio {
+    width: calc(50% - 0.75rem);
+    margin-bottom: 1.25rem;
+
+    .hs-form-radio-display {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      cursor: pointer;
+      color: $gray;
+      font-size: rem-calc(16);
+      padding-bottom: 0;
+      margin-bottom: 0;
+
+      span {
+        padding-left: 2.25rem;
+        position: relative;
+        text-transform: none;
+        font-size: rem-calc(16);
+        line-height: 1.2;
+
+        &::before,
+        &::after {
+          content: '';
+          @include square(1.25rem);
+          border-radius: 100%;
+          border: 1px solid $almost-black;
+          background: $white;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          content: '';
+          @include square(0.825rem);
+          left: 0.21rem;
+          background: $almost-black;
+          border: 0;
+          opacity: 0;
+        }
+      }
+    }
+
+    input[type='radio'] {
+      display: none;
+
+      &:checked + span::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  .hs-input {
+    width: auto !important;
+    margin: 0;
+    margin-right: 0.5rem;
+  }
+
+  > label {
+    font-size: rem-calc(16);
+    color: $almost-black;
+    margin-bottom: 1rem;
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "name": "responsive_aspect_ratio",
+  "label": "Aspect ratio",
+  "required": false,
+  "locked": false,
+  "children": [
+    {
+      "name": "desktop",
+      "label": "Desktop",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "choices": [
+        ["square", "Square - 1:1"],
+        ["h_large", "Landscape - 4:3"],
+        ["h_xlarge", "Landscape - 5:4"],
+        ["h_medium", "Landscape - 3:2"],
+        ["h_small", "Landscape - 16:9"],
+        ["h_xsmall", "Landscape - 20:9"],
+        ["h_xxsmall", "Landscape - 4:1"],
+        ["v_large", "Portrait - 4:5"],
+        ["v_medium", "Portrait - 2:3"],
+        ["v_small", "Portrait - 9:16"]
+      ],
+      "type": "choice",
+      "default": "h_small"
+    },
+    {
+      "name": "tablet",
+      "label": "Tablet",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "choices": [
+        ["square", "Square - 1:1"],
+        ["h_large", "Landscape - 4:3"],
+        ["h_xlarge", "Landscape - 5:4"],
+        ["h_medium", "Landscape - 3:2"],
+        ["h_small", "Landscape - 16:9"],
+        ["h_xsmall", "Landscape - 20:9"],
+        ["h_xxsmall", "Landscape - 4:1"],
+        ["v_large", "Portrait - 4:5"],
+        ["v_medium", "Portrait - 2:3"],
+        ["v_small", "Portrait - 9:16"]
+      ],
+      "type": "choice",
+      "default": "h_small"
+    },
+    {
+      "name": "mobile",
+      "label": "Mobiel",
+      "sortable": false,
+      "required": false,
+      "locked": false,
+      "display": "select",
+      "choices": [
+        ["square", "Square - 1:1"],
+        ["h_large", "Landscape - 4:3"],
+        ["h_xlarge", "Landscape - 5:4"],
+        ["h_medium", "Landscape - 3:2"],
+        ["h_small", "Landscape - 16:9"],
+        ["h_xsmall", "Landscape - 20:9"],
+        ["h_xxsmall", "Landscape - 4:1"],
+        ["v_large", "Portrait - 4:5"],
+        ["v_medium", "Portrait - 2:3"],
+        ["v_small", "Portrait - 9:16"]
+      ],
+      "type": "choice",
+      "default": "square"
+    }
+  ],
+  "type": "group",
+  "inline_help_text": "",
+  "help_text": ""
+}

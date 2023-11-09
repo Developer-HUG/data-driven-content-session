@@ -1,0 +1,218 @@
+{
+  "name": "columns",
+  "label": "Columns",
+  "required": false,
+  "locked": false,
+  "children": [
+    {
+      "name": "count",
+      "label": "Number of elements per row",
+      "required": false,
+      "locked": false,
+      "children": [
+        {
+          "name": "desktop",
+          "label": "Desktop",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["g-1/1@xl", "1 per row"],
+            ["g-1/2@xl", "2 per row"],
+            ["g-1/3@xl", "3 per row"],
+            ["g-1/4@xl", "4 per row"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "g-1/3@xl"
+        },
+        {
+          "name": "tablet",
+          "label": "Tablet",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["g-1/1@m-o", "1 per row"],
+            ["g-1/2@m-o", "2 per row"],
+            ["g-1/3@m-o", "3 per row"],
+            ["g-1/4@m-o", "4 per row"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "g-1/2@m-o"
+        },
+        {
+          "name": "mobile",
+          "label": "Mobile",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["g-1/1@s-o", "1 per row"],
+            ["g-1/2@s-o", "2 per row"],
+            ["g-1/3@s-o", "3 per row"],
+            ["g-1/4@s-o", "4 per row"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "g-1/1@s-o"
+        }
+      ],
+      "type": "group",
+      "inline_help_text": "",
+      "help_text": "",
+      "default": {}
+    },
+    {
+      "name": "gap",
+      "label": "Space between the elements",
+      "required": false,
+      "locked": false,
+      "children": [
+        {
+          "name": "desktop",
+          "label": "Desktop",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["none", "0"],
+            ["s", "10px"],
+            ["m", "25px"],
+            ["l", "50px"],
+            ["xl", "75px"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "l"
+        },
+        {
+          "name": "tablet",
+          "label": "Tablet",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["none", "0"],
+            ["s", "10px"],
+            ["m", "25px"],
+            ["l", "50px"],
+            ["xl", "75px"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "m"
+        },
+        {
+          "name": "mobile",
+          "label": "Mobile",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["none", "0"],
+            ["s", "10px"],
+            ["m", "25px"],
+            ["l", "50px"],
+            ["xl", "75px"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "none"
+        }
+      ],
+      "type": "group",
+      "inline_help_text": "",
+      "help_text": "",
+      "default": {
+        "desktop": "l",
+        "tablet": "m",
+        "mobile": "none"
+      }
+    },
+    {
+      "name": "margin",
+      "label": "Space below the elements",
+      "required": false,
+      "locked": false,
+      "children": [
+        {
+          "name": "desktop",
+          "label": "Desktop",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["none", "0"],
+            ["s", "10px"],
+            ["m", "25px"],
+            ["l", "50px"],
+            ["xl", "75px"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "l"
+        },
+        {
+          "name": "tablet",
+          "label": "Tablet",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["none", "0"],
+            ["s", "10px"],
+            ["m", "25px"],
+            ["l", "50px"],
+            ["xl", "75px"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "m"
+        },
+        {
+          "name": "mobile",
+          "label": "Mobile",
+          "required": false,
+          "locked": false,
+          "display": "select",
+          "inline_help_text": "",
+          "help_text": "",
+          "choices": [
+            ["none", "0"],
+            ["s", "10px"],
+            ["m", "25px"],
+            ["l", "50px"],
+            ["xl", "75px"]
+          ],
+          "type": "choice",
+          "placeholder": "",
+          "default": "none"
+        }
+      ],
+      "type": "group",
+      "inline_help_text": "",
+      "help_text": ""
+    }
+  ],
+  "type": "group",
+  "inline_help_text": "",
+  "help_text": "Choose the number of elements that should come next to each other and the space between these elements."
+}

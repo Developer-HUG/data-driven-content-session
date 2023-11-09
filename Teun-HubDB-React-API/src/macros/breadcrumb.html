@@ -1,0 +1,30 @@
+{% import 'dhug/macros/icon.html' as icon %}
+
+{% macro render(breadcrumb, additionalClass) %}
+{% set home = content_by_id(breadcrumb.page) %}
+
+{% if breadcrumb.show %}
+<div class="c-breadcrumb {{additionalClass}}">
+  <a href="{{home.absolute_url}}" class="c-breadcrumb__home-link">
+    {{icon.render('home', '', 'c-breadcrumb__icon')}}
+  </a>
+  {% for parent in breadcrumb.parents %}
+  {% set parent_page = content_by_id(parent.page) %}
+  {% set title = parent.title ? parent.title : (parent_page.HTML_TITLE ? parent_page.HTML_TITLE : parent_page.name) %}
+  <div class="c-breadcrumb__chevron-container">
+    {{icon.render('chevron-right', '', 'c-breadcrumb__chevron')}}
+  </div>
+  <a href="{{parent_page.absolute_url}}" class="c-breadcrumb__parent">
+    {{title}}
+  </a>
+  {% endfor %}
+  <div class="c-breadcrumb__chevron-container">
+    {{icon.render('chevron-right', '', 'c-breadcrumb__chevron')}}
+  </div>
+  <div class="c-breadcrumb__current">
+    {% set title = breadcrumb.title ? breadcrumb.title : (content.HTML_TITLE ? content.HTML_TITLE : content.name) %}
+    {{title}}
+  </div>
+</div>
+{% endif %}
+{% endmacro %}

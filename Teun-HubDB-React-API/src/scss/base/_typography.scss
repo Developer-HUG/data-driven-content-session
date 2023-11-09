@@ -1,0 +1,250 @@
+/**
+ * Typography
+ *
+ * @since 1.0.0
+ */
+
+/**
+ * HTML base
+ */
+html {
+  font-family: $primary-font-family;
+  font-size: 16px;
+  color: $almost-black;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  font-family: $heading-font-family;
+  font-weight: 800;
+}
+
+body {
+  font-size: rem-calc(16);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(18);
+  }
+}
+
+/**
+ * Paragraph
+ */
+p,
+.p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/**
+ * Headings
+ */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/**
+ * H1
+ */
+h1,
+.h1 {
+  font-size: rem-calc(45);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(52);
+  }
+  @include breakpoint(large) {
+    font-size: rem-calc(64);
+  }
+}
+
+/**
+ * H2
+ */
+h2,
+.h2 {
+  font-size: rem-calc(30);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(34);
+  }
+  @include breakpoint(large) {
+    font-size: rem-calc(38);
+  }
+}
+
+/**
+ * H3
+ */
+h3,
+.h3 {
+  font-size: rem-calc(24);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(27);
+  }
+
+  @include breakpoint(large) {
+    font-size: rem-calc(30);
+  }
+}
+
+/**
+ * H4
+ */
+h4,
+.h4 {
+  font-size: rem-calc(18);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(21);
+  }
+
+  @include breakpoint(large) {
+    font-size: rem-calc(24);
+  }
+}
+
+/**
+ * H5
+ */
+h5,
+.h5 {
+  font-size: rem-calc(16);
+
+  @include breakpoint(medium) {
+    font-size: rem-calc(18);
+  }
+
+  @include breakpoint(large) {
+    font-size: rem-calc(20);
+  }
+}
+
+/**
+ * H6
+ */
+h6,
+.h6 {
+  font-size: rem-calc(14);
+}
+
+/**
+ * Anchor
+ */
+a {
+  @include transition();
+  text-decoration: none;
+  cursor: pointer;
+  color: $dark-gray;
+  fill: $dark-gray;
+
+  &:hover {
+    color: $gray;
+    fill: $gray;
+  }
+
+  .c-icon {
+    fill: inherit;
+  }
+}
+
+/**
+ * Bold & strong
+ */
+b,
+strong {
+  font-weight: 700;
+  line-height: inherit;
+}
+
+em,
+i {
+  font-style: italic;
+  line-height: inherit;
+}
+
+/**
+ * Mark, Ins & Pre
+ */
+mark,
+ins {
+  background-color: lighten($almost-black, 80);
+  text-decoration: none;
+}
+
+code {
+  font-family: monospace;
+  font-size: 90%;
+}
+
+pre {
+  font-family: monospace;
+  font-size: 90%;
+  background: lighten($gray, 20);
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+/**
+ * small & big
+ */
+
+small {
+  font-size: 75%;
+}
+
+big {
+  font-size: 125%;
+}
+
+/**
+ * Blockquote & Q
+ */
+blockquote {
+  margin: 1.5rem 0;
+  font-size: rem-calc(18);
+  font-style: italic;
+}
+
+q {
+  font-weight: bold;
+
+  &::before,
+  &::after {
+    content: '\0022';
+  }
+}
+
+/**
+ * HR
+ */
+hr {
+  background-color: $gray;
+  border: 0;
+  height: 1px;
+  width: 100%;
+  margin: 1.5rem 0;
+}
