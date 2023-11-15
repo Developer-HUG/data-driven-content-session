@@ -6,6 +6,9 @@
 - [Watch the session on the HubSpot Developer YouTube channel](https://youtube.com/live/TFuZWdt4ogM?feature=share) 📺
 - [Join the Developer HUG](https://events.hubspot.com/developer/) 🤗
 
+## Just Launched!  New HubSpot Academy Course: CMS Data Driven Conteny
+- [Get to learning!](https://academy.hubspot.com/courses/cms-data-driven-content)🧑‍🎓
+  
 ## Have ideas? Found a way to improve things?  Will Spiro wants to talk with you!  
 - [Schedule a meeting with Will](https://app.hubspot.com/meetings/wspiro)
 
